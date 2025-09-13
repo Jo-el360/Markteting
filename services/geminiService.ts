@@ -3,12 +3,13 @@ import { GoogleGenAI, Type } from "@google/genai";
 import type { GeneratedCopy } from '../types.ts';
 import { CopyType } from '../types.ts';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-
 export const generateMarketingCopy = async (
   productName: string,
   productDescription: string
 ): Promise<GeneratedCopy[]> => {
+  // Initialize the client here to ensure `process.env` is available.
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+
   const prompt = `
     You are an expert marketing copywriter. 
     Your task is to generate three pieces of marketing copy for a product based on its name and description.

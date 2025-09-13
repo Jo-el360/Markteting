@@ -1,15 +1,15 @@
 
 import React, { useState, useCallback } from 'react';
-import { Header } from './components/Header';
-import { TextInput } from './components/TextInput';
-import { TextArea } from './components/TextArea';
-import { Button } from './components/Button';
-import { Spinner } from './components/Spinner';
-import { Alert } from './components/Alert';
-import { CopyCard } from './components/CopyCard';
-import { generateMarketingCopy } from './services/geminiService';
-import type { GeneratedCopy } from './types';
-import { CopyType } from './types';
+import { Header } from './components/Header.tsx';
+import { TextInput } from './components/TextInput.tsx';
+import { TextArea } from './components/TextArea.tsx';
+import { Button } from './components/Button.tsx';
+import { Spinner } from './components/Spinner.tsx';
+import { Alert } from './components/Alert.tsx';
+import { CopyCard } from './components/CopyCard.tsx';
+import { generateMarketingCopy } from './services/geminiService.ts';
+import type { GeneratedCopy } from './types.ts';
+import { CopyType } from './types.ts';
 
 const App: React.FC = () => {
   const [productName, setProductName] = useState('');

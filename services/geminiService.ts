@@ -22,8 +22,14 @@ export const generateMarketingCopy = async (
   `;
 
   try {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("API_KEY environment variable not set.");
+      throw new Error("The API_KEY is missing. Please ensure it is configured correctly in your application's environment settings.");
+    }
+    
     // Initialize the client here to ensure `process.env` is available and errors are caught.
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+    const ai = new GoogleGenAI({ apiKey });
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -64,7 +70,8 @@ export const generateMarketingCopy = async (
   } catch (error) {
     console.error("Error calling Gemini API:", error);
     if (error instanceof Error) {
-        throw new Error(`Gemini API Error: ${error.message}`);
+        // We avoid wrapping the error message to show our custom, more helpful message.
+        throw error;
     }
     throw new Error("An unknown error occurred while communicating with the Gemini API.");
   }
